@@ -18,6 +18,7 @@ class BlogsFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'name' => $this->faker->name(),
             'tags' => 'laravel, api, backend',
             'email' => $this->faker->companyEmail(),
             'website' => $this->faker->url(),
