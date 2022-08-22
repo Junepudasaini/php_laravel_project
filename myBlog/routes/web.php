@@ -2,11 +2,12 @@
 
 #use GuzzleHttp\Psr7\Request;
 
-use App\Http\Controllers\BloggingController;
+use App\Models\Blogs;
 use App\Models\Blogging;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Blogs;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BloggingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +19,39 @@ use App\Models\Blogs;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// ALl Blogs
 Route::get('/', [BloggingController::class, 'index']);
 
-Route::get('/blogs/create', [BloggingController::class, 'create']);
+//Create
+Route::get('/blogs/create', [BloggingController::class, 'create'])->middleware('auth');
 
-Route::post('/blogs', [BloggingController::class, 'store']);
+Route::post('/blogs', [BloggingController::class, 'store'])->middleware('auth');
 
 Route::get('/blogs/{blogging}', [BloggingController::class, 'show']);
 
+// Edit
+Route::get('/blogs/{blog}/edit', [BloggingController::class, 'edit'])->middleware('auth');
 
+// Update
+Route::put('/blogs/{blog}', [BloggingController::class, 'update'])->middleware('auth');
 
+// Delete
+Route::delete('/blogs/{blog}', [BloggingController::class, 'delete'])->middleware('auth');
 
+// Register Form
+Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 
+//Create New User
+Route::post('/users', [UserController::class, 'store']);
+
+//Logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+//Login Form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+//Login User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 
 

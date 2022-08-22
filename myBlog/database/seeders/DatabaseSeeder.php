@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Blogging;
 use App\Models\Blogs;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,9 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(5)->create();
-
-        Blogs::factory(6)->create();
+         //\App\Models\User::factory(5)->create();
+        $user = User::factory()->create([
+            'name'=> 'Jun Pudasaini',
+            'email'=> 'jun@gmail.com'
+        ]);
+        Blogs::factory(6)->create([
+            'user_id' => $user->id
+        ]);
 
      /*   Blogs::create([
             'title' => 'Laravel Senior Developer', 
