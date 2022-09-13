@@ -43,7 +43,7 @@ class BloggingController extends Controller
 
         Blogs::create($formFields);
 
-        return redirect('/')->with('successMessage', 'Your blog created successfully!');
+        return redirect('/')->with('message', 'Your blog created successfully!');
     }
     // Edit Form
     public function edit(Blogs $blog){

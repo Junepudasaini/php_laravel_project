@@ -6,7 +6,7 @@ use session;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\User;
-
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -43,7 +43,7 @@ class UserController extends Controller
         return redirect('/')->with('message', 'Logged out!');
     }
 
-    //Login
+    //Show Login Form
     public function login(){
         return view('users.login');
     }

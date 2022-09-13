@@ -5,9 +5,15 @@
 use App\Models\Blogs;
 use App\Models\Blogging;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GitHubController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\BloggingController;
+use App\Http\Controllers\FacebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +28,10 @@ use App\Http\Controllers\BloggingController;
 // ALl Blogs
 Route::get('/', [BloggingController::class, 'index']);
 
-//Create
+//Show Create Blog Form
 Route::get('/blogs/create', [BloggingController::class, 'create'])->middleware('auth');
 
+//Save The Form 
 Route::post('/blogs', [BloggingController::class, 'store'])->middleware('auth');
 
 Route::get('/blogs/{blogging}', [BloggingController::class, 'show']);
@@ -54,6 +61,15 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 
+Route::get('/auth/github', [GitHubController::class, 'redirectToGitHub']);
+
+Route::get('/auth/callback', [GitHubController::class, 'handleGithubCallback']);
+
+Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::get('/auth/facebook', [FacebookController::class, 'redirectToFacebook']);
+Route::get('/auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
 
 
 /*

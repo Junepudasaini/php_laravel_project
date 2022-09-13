@@ -56,6 +56,22 @@
                                     >Register</a
                                 >
                             </p>
+                            <br>
+                        </div>
+                        <div class="mb-6">
+                            <a class="bg-laravel text-white rounded py-2 px-4 hover:bg-black" href="auth/github" style="padding: 10px; width: 100%; text-align: center; display: block; border-radius:3px;"> 
+                                Sign In With GitHub
+                            </a>
+                        </div>
+                        <div class="mb-6">
+                            <a class="bg-laravel text-white rounded py-2 px-4 hover:bg-black" href="auth/google" style="padding: 10px; width: 100%; text-align: center; display: block; border-radius:3px;"> 
+                                Sign In With Google
+                            </a>
+                        </div>
+                        <div class="mb-6">
+                            <a class="bg-laravel text-white rounded py-2 px-4 hover:bg-black" href="auth/facebook" style="padding: 10px; width: 100%; text-align: center; display: block; border-radius:3px;"> 
+                                Sign In With Facebook
+                            </a>
                         </div>
                     </form>
     </x-card>
